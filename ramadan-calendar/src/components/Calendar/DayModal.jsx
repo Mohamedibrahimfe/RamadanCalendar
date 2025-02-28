@@ -30,13 +30,20 @@ const DayModal = () => {
   if (expandedDay === null) {
     return null;
   }
+
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 *text-gray-100">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 overflow-y-auto p-4 sm:p-6 md:p-20"
+    >
+      <div className="fixed inset-0 bg-black bg-opacity-25" aria-hidden="true" />
       <motion.div
-        initial={{ opacity: 0, scale: 0, x: -100 }}
-        animate={{ opacity: 1, scale: 1, transition: { duration: 0.3 }, x: 0 }}
-        exit={{ opacity: 0, scale: 0.9 }}
-        className="bg-white dark:bg-gray-800 text-white p-6 rounded-lg shadow-lg w-96"
+        initial={{ scale: 0.95 }}
+        animate={{ scale: 1 }}
+        exit={{ scale: 0.95 }}
+        className="relative bg-white dark:bg-gray-800 rounded-lg shadow-xl max-w-lg mx-auto p-4 sm:p-6"
       >
         <h2 className="text-xl font-semibold mb-4">
           Customize Day {expandedDay + 1}
@@ -91,7 +98,7 @@ const DayModal = () => {
           Close
         </button>
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 

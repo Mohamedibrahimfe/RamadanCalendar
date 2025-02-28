@@ -1,11 +1,11 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { toggleDayModal } from "../../redux/calendarSlice";
 import React from "react";
 import Task from "./Task";
 
 const DayCard = ({ day, dayNumber, dayTasks }) => {
   const dispatch = useDispatch();
-  const today = new Date("2025-03-11").getDate();
+  const today = new Date("2025-03-01").getDate();
 
   const isPastDay = dayNumber < today;
 
@@ -19,7 +19,7 @@ const DayCard = ({ day, dayNumber, dayTasks }) => {
 
   return (
     <div
-      className={`min-w-[150px] w-full ${dayNumber === today ? "today" : ""}`}
+      className={`min-w-[150px] w-full text-gray-500  ${dayNumber === today ? "today" : ""}`}
       onClick={handleDayClick}
     >
       <p className={`text-lg font-semibold ${isPastDay ? "line-through opacity-50" : ""}`}>
