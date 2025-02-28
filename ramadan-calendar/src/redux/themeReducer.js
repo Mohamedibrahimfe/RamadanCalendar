@@ -1,17 +1,37 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { theme: localStorage.getItem("theme") || "light" };
+const initialState = {
+  theme: localStorage.getItem("theme") || "light"
+};
 
-const languageSlice = createSlice({
+const themeSlice = createSlice({
   name: "theme",
   initialState,
   reducers: {
     toggleTheme: (state) => {
       state.theme = state.theme === "light" ? "dark" : "light";
-      localStorage.setItem("theme", state.theme); // Save to local storage
+      localStorage.setItem("theme", state.theme);
+      
+      // Update both data-theme and dark class
+      document.documentElement.setAttribute("data-theme", state.theme);
+      if (state.theme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
     },
   },
 });
 
-export const { toggleTheme } = languageSlice.actions;
-export default languageSlice.reducer;
+// Initialize theme on app load
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme === "dark") {
+  document.documentElement.classList.add("dark");
+  document.documentElement.setAttribute("data-theme", "dark");
+} else {
+  document.documentElement.classList.remove("dark");
+  document.documentElement.setAttribute("data-theme", "light");
+}
+
+export const { toggleTheme } = themeSlice.actions;
+export default themeSlice.reducer;

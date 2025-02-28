@@ -1,58 +1,56 @@
 import React from "react";
 import ThemeToggle from "./ThemeToggle";
 import ToggleLanguage from "./ToggleLanguage";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { toggleCollapse } from "../../redux/collapse";
+
 export default function HeaderBar() {
   const language = useSelector((state) => state.language.language);
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleLogout = () => {
+    logout();
+    navigate('/');
+  };
 
   return (
     <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
-      <div
-        className="px-3 py-3 lg:px-5 lg:pl-3"
-        style={
-          language === "ar"
-            ? { flexDirection: "row-reverse", direction: "rtl" }
-            : { flexDirection: "row", direction: "ltr" }
-        }
-      >
+      <div className="px-3 py-3 lg:px-5">
         <div className="flex items-center justify-between">
-          <div className="flex items-center justify-start rtl:justify-end">
+          <div className="flex items-center">
             <button
-              data-drawer-target="logo-sidebar"
-              data-drawer-toggle="logo-sidebar"
-              aria-controls="logo-sidebar"
-              type="button"
-              className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              onClick={() => dispatch(toggleCollapse())}
+              className="p-2 rounded-lg md:hidden text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"
+              aria-label="Toggle sidebar"
             >
-              <span className="sr-only">Open sidebar</span>
-              <svg
-                className="w-6 h-6"
-                aria-hidden="true"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  clipRule="evenodd"
-                  fillRule="evenodd"
-                  d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 10.5a.75.75 0 01.75-.75h7.5a.75.75 0 010 1.5h-7.5a.75.75 0 01-.75-.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10z"
-                ></path>
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" />
               </svg>
             </button>
-            <a href="#" className="flex ms-2 md:me-24">
-              <img
-                src="/10337574.png"
-                className="h-8 me-3 -ml-6 "
-                alt="Ramadan Tracker Logo"
-              />
-              <span className="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
-                {language === "en" ? "Ramadan Tracker" : "الي الله اقرب"}
-              </span>
-            </a>
+            <img src="/10337574.png" className="h-8 mx-3" alt="Logo" />
+            <span className="text-xl font-semibold hidden sm:block dark:text-white">
+              {language === "en" ? "Ramadan Tracker" : "الي الله اقرب"}
+            </span>
           </div>
-          <div className="flex">
-            <ThemeToggle />
-            <ToggleLanguage />
+          
+          <div className="flex items-center space-x-3">
+            <span className="hidden sm:block text-gray-700 dark:text-gray-300">
+              {user?.name}
+            </span>
+            <div className="flex items-center space-x-2">
+              <ThemeToggle />
+              <ToggleLanguage />
+              <button
+                onClick={handleLogout}
+                className="p-2 text-gray-700 dark:text-gray-300 hover:text-red-500"
+              >
+                <span>🚪</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
