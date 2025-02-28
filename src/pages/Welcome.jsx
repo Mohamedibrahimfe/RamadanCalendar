@@ -21,7 +21,9 @@ export default function Welcome() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
+    <div
+    id='welcome'
+     className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 px-4">
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -30,7 +32,7 @@ export default function Welcome() {
         <div>
           <img
             className="mx-auto h-20 w-auto"
-            src="/10337574.png"
+            src="/pngegg.png"
             alt="Ramadan Tracker"
           />
           <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900 dark:text-white">

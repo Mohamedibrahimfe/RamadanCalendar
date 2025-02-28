@@ -21,7 +21,7 @@ export default function HeaderBar() {
     <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
       <div className="px-3 py-3 lg:px-5">
         <div className="flex items-center justify-between">
-          <div className="flex items-center -ml-10">
+          <div className="flex items-center ">
             <button
               onClick={() => dispatch(toggleCollapse())}
               className="p-2 rounded-lg md:hidden text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"
@@ -31,7 +31,7 @@ export default function HeaderBar() {
                 <path d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" />
               </svg>
             </button>
-            <img src="/10337574.png" className="h-8 mx-3" alt="Logo" />
+            <img src="/pngegg.png" className="h-8 mx-3" alt="Logo" />
             <span className="text-xl font-semibold hidden sm:block dark:text-white">
               {language === "en" ? "Ramadan Tracker" : "الي الله اقرب"}
             </span>
