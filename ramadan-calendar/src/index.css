@@ -8,6 +8,10 @@
   --text-dark: #ffffff;
 }
 
+body {
+  overflow: hidden !important;
+}
+
 html[data-theme="light"] {
   background-color: var(--bg-light);
   color: var(--text-light);
@@ -63,4 +67,130 @@ q {
 .dar[data-theme='dark'] {
   box-shadow: 5px 5px 5px 5px rgba(241, 255, 0, 1);
   background-color: blue;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Add these utility classes */
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 300ms ease-in;
+}
+
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 300ms ease-in;
+}
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Improve dark mode transitions */
+* {
+  transition: background-color 0.2s ease-in-out,
+    border-color 0.2s ease-in-out,
+    color 0.2s ease-in-out;
+}
+
+/* Fix content shifting on theme change */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* Better mobile tap targets */
+button,
+a {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+@media (max-width: 768px) {
+  .text-responsive {
+    font-size: calc(14px + 0.5vw);
+  }
+}
+
+/* Ensure dark mode styles are properly applied */
+:root {
+  color-scheme: light;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* Default light theme colors */
+:root {
+  --bg-primary: #ffffff;
+  --text-primary: #1a202c;
+}
+
+/* Dark theme colors */
+:root[data-theme="dark"] {
+  --bg-primary: #1a202c;
+  --text-primary: #ffffff;
+}
+
+/* Apply base styles */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Add to your existing styles */
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#root {
+  height: 100vh;
+}
+
+.main-content {
+  margin-left: 16rem;
+  /* Adjust based on your sidebar width */
+  transition: margin-left 0.3s ease-in-out;
+}
+
+.main-content.collapsed {
+  margin-left: 4rem;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+  }
+}
+
+.collapsed {
+span {
+    display: none;
+  }
 }
