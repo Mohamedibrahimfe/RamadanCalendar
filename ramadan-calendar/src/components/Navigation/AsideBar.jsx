@@ -3,21 +3,24 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Collapse from "./Collapse";
 export default function AsideBar() {
-  const language = useSelector((state) => state.language.language);
   const collapse = useSelector((state) => state.collapse.collapse);
-
+  const language = useSelector((state) => state.language.language);
   return (
-    <aside
-      id="logo-sidebar"
-      className={` w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700
-${collapse ? "collapsed" : ""}`}
-      aria-label="Sidebar"
+    <aside className={`fixed top-16 h-[calc(100vh-4rem)] bg-white dark:bg-gray-800 border-r dark:border-gray-700
+      transition-all duration-300 ease-in-out
+      ${collapse ? 'w-16' : 'w-64'}
+      ${language === 'ar' ? 'right-0' : 'left-0'}
+      ${collapse ? 'translate-x-0 collapsed' : '-translate-x-full md:translate-x-0'}
+      ${language === 'ar' ? 
+        (collapse ? 'translate-x-0 collapsed' : 'translate-x-full md:translate-x-0') : 
+        (collapse ? 'translate-x-0' : '-translate-x-full md:translate-x-0')}`}
     >
-      <div className="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+      <div className="h-full px-3 py-4 overflow-y-auto">
         <ul className="space-y-2 font-medium">
+          {/* Update each navigation item's span to include collapse-based visibility */}
           <li>
             <Link
-              to="/"
+              to="/dashboard"
               className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
               <svg
@@ -46,7 +49,7 @@ ${collapse ? "collapsed" : ""}`}
 
           <li>
             <Link
-              to="/recommended"
+              to="/dashboard/recommended"
               className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
               <svg
@@ -94,14 +97,14 @@ ${collapse ? "collapsed" : ""}`}
               </svg>
               <span className="flex-1 ms-3 whitespace-nowrap">
                 {language === "en"
-                  ? "Recommended Routine"
-                  : "الروتين الموصى به"}
+                  ? "Hint For Routine"
+                  : "تلميحات للعبادات اليومية"}
               </span>
             </Link>
           </li>
           <li>
             <Link
-              to="/hadith"
+              to="/dashboard/hadith"
               className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
               <svg
@@ -120,7 +123,7 @@ ${collapse ? "collapsed" : ""}`}
           </li>
           <li>
             <Link
-              to="ai"
+              to="/dashboard/ai"
               className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
               <svg
@@ -165,7 +168,7 @@ ${collapse ? "collapsed" : ""}`}
           </li>
           <li>
             <Link
-              to="/progress"
+              to="/dashboard/progress"
               className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
               <svg
@@ -186,15 +189,15 @@ ${collapse ? "collapsed" : ""}`}
                   <title>file_type_progress</title>
                   <path
                     d="M29.107,9.963h0v14a1.079,1.079,0,0,1-.489.845l-.458.274L24.67,27.1l-2.357,1.372-.489.274V13.6L8.719,6.03l6.224-3.587.574-.327a1.081,1.081,0,0,1,.977,0L25.122,7.1,29.1,9.4v.563Z"
-                    // style="fill:#020400"
+                  // style="fill:#020400"
                   ></path>
                   <path
                     d="M18.909,15.284l-2.687-1.553L9.935,10.1a1.1,1.1,0,0,0-.977,0L3.378,13.322l-.486.283,9.466,5.464V30l5.571-3.219.491-.274a1.081,1.081,0,0,0,.489-.845Z"
-                    // style="fill:#020400"
+                  // style="fill:#020400"
                   ></path>
                   <polygon
                     points="2.893 24.536 9.441 28.318 9.441 20.749 2.893 24.536"
-                    // style="fill:#020400"
+                  // style="fill:#020400"
                   ></polygon>
                 </g>
               </svg>
@@ -205,7 +208,93 @@ ${collapse ? "collapsed" : ""}`}
           </li>
           <li>
             <Link
-              to="/settings"
+              to="/dashboard/settings"
+              className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+            >
+              <svg
+                className="flex-shrink-0 w-5 h-5 transition duration-75 dark:text-gray-100 group-hover:text-gray-900 dark:group-hover:text-white"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <path d="M12,8a4,4,0,1,0,4,4A4,4,0,0,0,12,8Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,12,14Zm8.99-5L19.415,9c-.008-.022-.036-.107-.046-.129l1.11-1.11a2.011,2.011,0,0,0,0-2.842l-1.4-1.4a2,2,0,0,0-1.421-.588h0a2,2,0,0,0-1.419.588L15.07,4.612,15,4.58V3.009A2.011,2.011,0,0,0,12.99,1H11.01A2.011,2.011,0,0,0,9,3.009L9,4.566l-.086.049-.043.016L7.765,3.522a2,2,0,0,0-1.42-.589h0a2,2,0,0,0-1.421.588l-1.4,1.4a2.011,2.011,0,0,0,0,2.842l1.1,1.143c-.013.029-.033.063-.043.093H3.01A2.011,2.011,0,0,0,1,11.009v1.982A2.011,2.011,0,0,0,3.01,15l1.575,0c.008.022.036.107.046.129l-1.11,1.11a2.011,2.011,0,0,0,0,2.842l1.4,1.4a2.059,2.059,0,0,0,2.842,0l1.115-1.115c.022.011.1.047.121.056v1.571A2.011,2.011,0,0,0,11.01,23h1.98A2.011,2.011,0,0,0,15,20.991l0-1.557.129-.065,1.109,1.109a2.058,2.058,0,0,0,2.843,0l1.4-1.4a2.011,2.011,0,0,0,0-2.842l-1.1-1.143c.013-.029.033-.063.043-.093H20.99A2.011,2.011,0,0,0,23,12.991V11.009A2.011,2.011,0,0,0,20.99,9Zm0,4H19.421a2.1,2.1,0,0,0-1.466,3.54l1.109,1.124-1.414,1.4-1.11-1.109A2.1,2.1,0,0,0,13,19.42L12.99,21,11,20.991V19.42a2.043,2.043,0,0,0-1.307-1.881,2.138,2.138,0,0,0-.816-.164,2,2,0,0,0-1.417.58L6.336,19.064l-1.4-1.414,1.108-1.108A2.1,2.1,0,0,0,4.579,13L3,12.991,3.01,11H4.579A2.1,2.1,0,0,0,6.045,7.46L4.936,6.336l1.414-1.4L7.46,6.045a2.04,2.04,0,0,0,2.227.419l.018-.007A2.04,2.04,0,0,0,11,4.58L11.01,3,13,3.009V4.58a2,2,0,0,0,1.227,1.845c.026.013.057.027.087.039a2.038,2.038,0,0,0,2.226-.419l1.124-1.109,1.4,1.414L17.956,7.458A2.1,2.1,0,0,0,19.421,11H20.99l.01.009Z"></path>
+                </g>
+              </svg>
+              <span className="flex-1 ms-3 whitespace-nowrap">
+                {language === "en" ? "Settings" : "الإعدادات"}
+              </span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/dashboard/prayer-times"
+              className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+            >
+              <svg
+                className="flex-shrink-0 w-5 h-5 transition duration-75 dark:text-gray-100 group-hover:text-gray-900 dark:group-hover:text-white"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M12 2C6.486 2 2 6.486 2 12C2 17.514 6.486 22 12 22C17.514 22 22 17.514 22 12C22 6.486 17.514 2 12 2ZM12 20C7.589 20 4 16.411 4 12C4 7.589 7.589 4 12 4C16.411 4 20 7.589 20 12C20 16.411 16.411 20 12 20Z"/>
+                <path d="M13 7H11V13H17V11H13V7Z"/>
+              </svg>
+              <span className={`flex-1 ms-3 whitespace-nowrap ${collapse ? 'hidden' : 'block'}`}>
+                {language === "en" ? "Prayer Times" : "أوقات الصلاة"}
+              </span>
+            </Link>
+          </li>
+          
+          <li>
+            <Link
+              to="/dashboard/progress"
+              className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
+            >
+              <svg
+                className="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                width="192px"
+                height="192px"
+                viewBox="0 0 32 32"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+              >
+                <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                <g
+                  id="SVGRepo_tracerCarrier"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                ></g>
+                <g id="SVGRepo_iconCarrier">
+                  <title>file_type_progress</title>
+                  <path
+                    d="M29.107,9.963h0v14a1.079,1.079,0,0,1-.489.845l-.458.274L24.67,27.1l-2.357,1.372-.489.274V13.6L8.719,6.03l6.224-3.587.574-.327a1.081,1.081,0,0,1,.977,0L25.122,7.1,29.1,9.4v.563Z"
+                  // style="fill:#020400"
+                  ></path>
+                  <path
+                    d="M18.909,15.284l-2.687-1.553L9.935,10.1a1.1,1.1,0,0,0-.977,0L3.378,13.322l-.486.283,9.466,5.464V30l5.571-3.219.491-.274a1.081,1.081,0,0,0,.489-.845Z"
+                  // style="fill:#020400"
+                  ></path>
+                  <polygon
+                    points="2.893 24.536 9.441 28.318 9.441 20.749 2.893 24.536"
+                  // style="fill:#020400"
+                  ></polygon>
+                </g>
+              </svg>
+              <span className="flex-1 ms-3 whitespace-nowrap">
+                {language === "en" ? "Progress " : "التقدم"}
+              </span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/dashboard/settings"
               className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
               <svg
