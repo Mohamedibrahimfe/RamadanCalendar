@@ -1,13 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = { lang: "en" };
+const initialState = {
+  language: localStorage.getItem("language") || "en", // Default to English
+};
 
 const languageSlice = createSlice({
   name: "language",
   initialState,
   reducers: {
     toggleLanguage: (state) => {
-      state.lang = state.lang === "en" ? "ar" : "en";
+      state.language = state.language === "en" ? "ar" : "en";
+      localStorage.setItem("language", state.language); // Save to local storage
     },
   },
 });
