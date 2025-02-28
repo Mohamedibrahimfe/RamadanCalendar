@@ -21,7 +21,7 @@ export default function HeaderBar() {
     <nav className="fixed top-0 z-50 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
       <div className="px-3 py-3 lg:px-5">
         <div className="flex items-center justify-between">
-          <div className="flex items-center">
+          <div className="flex items-center -ml-10">
             <button
               onClick={() => dispatch(toggleCollapse())}
               className="p-2 rounded-lg md:hidden text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700"
@@ -39,7 +39,7 @@ export default function HeaderBar() {
           
           <div className="flex items-center space-x-3">
             <span className="hidden sm:block text-gray-700 dark:text-gray-300">
-              {user?.name}
+              Hello, {user?.name}
             </span>
             <div className="flex items-center space-x-2">
               <ThemeToggle />

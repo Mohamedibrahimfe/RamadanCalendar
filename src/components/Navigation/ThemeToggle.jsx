@@ -8,7 +8,7 @@ const ThemeToggle = () => {
 
   return (
     <button
-      onClick={() => dispatch(toggleTheme())}
+      // onClick={() => dispatch(toggleTheme())}
       className="p-2 rounded-full bg-gray-200 dark:bg-gray-600 cursor-pointer w-10 transition-colors duration-200"
     >
       {theme === "light" ? (
