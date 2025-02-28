@@ -195,7 +195,7 @@ span {
   }
 }
 .welcome{
-  background-image: url('/pngegg.png');
+  background-image: url('../public/pngegg.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

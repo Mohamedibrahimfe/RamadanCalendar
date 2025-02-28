@@ -34,7 +34,7 @@ export default function HeaderBar() {
             <img src="/pngegg.png" className="h-8 mx-3" alt="Logo" />
             <span className="text-xl font-semibold hidden sm:block dark:text-white">
               {language === "en" ? "Ramadan Tracker" : "الي الله اقرب"}
-            </span>
+            </span>f
           </div>
           
           <div className="flex items-center space-x-3">
