@@ -21,6 +21,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient();
 
 import ErrorBoundary from "./components/ErrorBoundary";
+import SalahTutorial from "./pages/SalahTutorial";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
@@ -45,6 +46,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
                 <Route path="hadith" element={<Hadith />} />
                 <Route path="ai" element={<Ai />} />
                 <Route path="progress" element={<Progress />} />
+                <Route path="salah-tutorial" element={<SalahTutorial />} />
                 <Route path="*" element={<NoPage />} />
               </Route>
             </Routes>
