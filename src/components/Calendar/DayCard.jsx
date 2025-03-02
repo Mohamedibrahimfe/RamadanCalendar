@@ -5,7 +5,7 @@ import Task from "./Task";
 
 const DayCard = ({ day, dayNumber, dayTasks }) => {
   const dispatch = useDispatch();
-  const today = new Date("2025-03-01").getDate();
+  const today = new Date().getDate();
 
   const isPastDay = dayNumber < today;
 

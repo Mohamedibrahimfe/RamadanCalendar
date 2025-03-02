@@ -8,10 +8,6 @@
   --text-dark: #ffffff;
 }
 
-body {
-  overflow: hidden !important;
-}
-
 html[data-theme="light"] {
   background-color: var(--bg-light);
   color: var(--text-light);
@@ -166,7 +162,6 @@ body {
 body {
   margin: 0;
   padding: 0;
-  overflow: hidden;
 }
 
 #root {

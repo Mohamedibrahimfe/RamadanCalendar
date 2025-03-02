@@ -6,7 +6,7 @@ export default function AsideBar() {
   const collapse = useSelector((state) => state.collapse.collapse);
   const language = useSelector((state) => state.language.language);
   return (
-    <aside className={`fixed top-16 h-[calc(100vh-4rem)] bg-white dark:bg-gray-800 border-r dark:border-gray-700
+    <aside className={`fixed top-16 min-h-[calc(100vh-4rem)] bg-white dark:bg-gray-800 border-r dark:border-gray-700
       transition-all duration-300 ease-in-out
       ${collapse ? 'w-16' : 'w-64'}
       ${language === 'ar' ? 'right-0' : 'left-0'}
