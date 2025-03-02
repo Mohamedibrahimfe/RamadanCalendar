@@ -1,4 +1,4 @@
-import React from "react";
+import React, { lazy } from "react";
 import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
@@ -6,22 +6,23 @@ import "./index.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Layout from "./layouts/Layout";
-import Welcome from "./pages/Welcome";
-import Calender from "./pages/Calender";
-import NoPage from "./pages/NoPage";
-import Settings from "./pages/Settings";
-import Hadith from "./pages/Hadith";
-import Recommended from "./pages/Recommended";
-import Ai from "./pages/Ai";
-import Progress from "./pages/Progress";
-import PrayerTimes from "./pages/PrayerTimes";
-
+// all components are loading lazy
+const Layout = lazy(() => import("./layouts/Layout"));
+const Welcome = lazy(() => import("./pages/Welcome"));
+const Calender = lazy(() => import("./pages/Calender"));
+const PrayerTimes = lazy(() => import("./pages/PrayerTimes"));
+const Settings = lazy(() => import("./pages/Settings"));
+const Recommended = lazy(() => import("./pages/Recommended"));
+const Hadith = lazy(() => import("./pages/Hadith"));
+const Ai = lazy(() => import("./pages/Ai"));
+const Progress = lazy(() => import("./pages/Progress"));
+const NoPage = lazy(() => import("./pages/NoPage"));
+const SalahTutorial = lazy(() => import("./pages/SalahTutorial"));
+// react query
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 const queryClient = new QueryClient();
-
+// ErrorBoundary
 import ErrorBoundary from "./components/ErrorBoundary";
-import SalahTutorial from "./pages/SalahTutorial";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <Provider store={store}>
