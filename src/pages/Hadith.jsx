@@ -19,16 +19,16 @@ const Hadith = () => {
       transition={{ duration: 0.5 }}
       className="container mx-auto p-4 max-w-4xl"
     >
-      <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 mb-8">
+      <div className="   rounded-xl shadow-lg p-6 mb-8">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
+          <h2 className="text-2xl font-bold dark:text-gray-700">
             {language === "en" ? "Daily Hadith" : "الحديث اليومي"}
           </h2>
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={getNewHadith}
-            className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
+            className="bg-blue-500 hover:bg-blue-600 text-white  px-4 py-2 rounded-lg flex items-center gap-2 transition-colors"
           >
             <span>🔄</span>
             {language === "en" ? "New Hadith" : "حديث جديد"}
@@ -43,16 +43,16 @@ const Hadith = () => {
         >
           <div className="mb-8 ">
             <div className="text-right mb-6">
-              <q className="block text-2xl leading-relaxed Uthman text-gray-700 dark:text-gray-200">
+              <q className="block text-2xl leading-relaxed Uthman text-gray-700 dark:text-gray-600">
                 {currentHadith.arabic}
               </q>
             </div>
             
             <div className="space-y-4">
-              <p className="text-gray-600 dark:text-gray-300 italic">
+              <p className="text-gray-600 dark:text-gray-400 italic">
                 {currentHadith.english.narrator}
               </p>
-              <p className="text-gray-800 dark:text-gray-200 text-lg leading-relaxed">
+              <p className="text-gray-800 dark:text-gray-400 text-lg leading-relaxed">
                 {currentHadith.english.text}
               </p>
             </div>

@@ -71,7 +71,7 @@ function Settings() {
       animate={{ opacity: 1, y: 0 }}
       className="container mx-auto p-6 max-w-2xl"
     >
-      <h1 className="text-3xl font-bold mb-8 text-center">
+      <h1 className="text-3xl font-bold mb-8 text-center text-gray-800 dark:text-white">
         {language === "ar" ? "الإعدادات" : "Settings"}
       </h1>
 
@@ -84,18 +84,18 @@ function Settings() {
             transition={{ delay: groupIndex * 0.1 }}
             className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6"
           >
-            <h2 className="text-xl font-semibold mb-4 text-blue-600 dark:text-blue-400">
+            <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-700">
               {language === "ar" ? group.title.ar : group.title.en}
             </h2>
             <div className="space-y-4">
               {group.settings.map((setting, settingIndex) => (
                 <div
                   key={settingIndex}
-                  className="flex items-center justify-between p-2 hover:bg-gray-50 dark:hover:bg-gray-700 rounded-lg transition-colors"
+                  className="flex items-center justify-between p-2 hover:bg-gray-100 dark:hover:bg-gray-400 rounded-lg transition-colors"
                 >
                   <div className="flex items-center space-x-3">
                     <span className="text-xl">{setting.icon}</span>
-                    <span className="text-gray-700 dark:text-gray-300">
+                    <span className="text-gray-700 dark:text-gray-700">
                       {language === "ar" ? setting.name.ar : setting.name.en}
                     </span>
                   </div>
@@ -119,9 +119,7 @@ function Settings() {
           animate={{ opacity: 1, y: 0 }}
           className="mt-8 text-center"
         >
-          <button
-            className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg transition-colors duration-200 flex items-center mx-auto space-x-2"
-          >
+          <button className="bg-red-500 hover:bg-red-600 text-white px-6 py-2 rounded-lg transition-colors duration-200 flex items-center mx-auto space-x-2">
             <span>🗑️</span>
             <span>{language === "ar" ? "حذف الحساب" : "Delete Account"}</span>
           </button>

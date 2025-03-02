@@ -34,11 +34,11 @@ export default function HeaderBar() {
             <img src="/pngegg.png" className="h-8 mx-3" alt="Logo" />
             <span className="text-xl font-semibold hidden sm:block dark:text-white">
               {language === "en" ? "Ramadan Tracker" : "الي الله اقرب"}
-            </span>f
+            </span>
           </div>
-          
+
           <div className="flex items-center space-x-3">
-            <span className="hidden sm:block text-gray-700 dark:text-gray-300">
+            <span className="hidden sm:block  dark:text-gray-900 font-semibold">
               Hello, {user?.name}
             </span>
             <div className="flex items-center space-x-2">
@@ -46,9 +46,9 @@ export default function HeaderBar() {
               <ToggleLanguage />
               <button
                 onClick={handleLogout}
-                className="p-2 text-gray-700 dark:text-gray-300 hover:text-red-500"
+                className="p-2 text-gray-700 dark:text-gray-300 hover:text-red-500 cursor-pointer"
               >
-                <span>🚪</span>
+                <span>💤</span>
               </button>
             </div>
           </div>

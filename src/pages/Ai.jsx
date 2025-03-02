@@ -60,7 +60,7 @@ export default function Ai() {
           {language === "en" ? "AI Routine Assistant" : "مساعد الروتين الذكي"}
         </h1>
 
-        <div className="chat-container mb-6 h-[60vh] overflow-y-auto space-y-4 p-4 bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <div className="chat-container mb-6 h-[60vh] overflow-y-auto space-y-4 p-4 bg-gray-50  dark:bg-slate-200 rounded-lg">
           {chatHistory.length === 0 && (
             <div className="text-center text-gray-500 dark:text-gray-400 py-8">
               {language === "en" 
@@ -112,7 +112,7 @@ export default function Ai() {
             onChange={(e) => setPrompt(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && !isLoading && generateResponse()}
             placeholder={language === "en" ? "Ask about Ramadan routines..." : "اسأل عن روتين رمضان..."}
-            className="flex-1 p-3 border rounded-lg dark:bg-gray-700 dark:text-white dark:border-gray-600"
+            className="flex-1 p-3 border rounded-lg  dark:text-white dark:border-gray-600"
             disabled={isLoading}
           />
           <motion.button

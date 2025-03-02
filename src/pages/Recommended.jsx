@@ -84,7 +84,7 @@ export default function Recommended() {
               {routine.tasks.map((task, taskIndex) => (
                 <li 
                   key={taskIndex}
-                  className="flex items-center space-x-2 text-gray-700 dark:text-gray-300"
+                  className="flex items-center space-x-2 text-gray-700 dark:text-gray-600"
                 >
                   <span className="text-green-500">•</span>
                   <span>{language === "en" ? task.en : task.ar}</span>

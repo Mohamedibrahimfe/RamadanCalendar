@@ -2,22 +2,31 @@
 
 /* @import url("https://fonts.googleapis.com/css2?family=UthmanTN1_Ver07&display=swap"); */
 :root {
-  --bg-light: #09000e0e;
-  --text-light: #000000;
-  --bg-dark: #1a202c;
-  --text-dark: #ffffff;
+  --bg-primary: #ffffff;
+  --text-primary: #1a202c;
+  --bg-secondary: #f7fafc;
+  --text-secondary: #ff590c;
 }
 
-html[data-theme="light"] {
-  background-color: var(--bg-light);
-  color: var(--text-light);
+:root[data-theme="dark"] {
+  --bg-primary: #1a202c;
+  --text-primary: #ffffff;
+  --bg-secondary: #2d3748;
+  --text-secondary: #a0aec0;
 }
 
-html[data-theme="dark"] {
-  background-color: var(--bg-dark);
-  color: var(--text-dark) !important;
+/* Add this to ensure Tailwind's dark mode works */
+:root[data-theme="dark"] .dark\:bg-gray-800 {
+  background-color: #e9e8e8;
+  color: black!important;
 }
 
+:root[data-theme="dark"] .dark\:text-white {
+  color: black!important;
+}
+body.dark{
+  color: lightblue!important;
+}
 .collapsed {
   width: 60px !important;
   transition: all 0.5s ease-in-out;
@@ -54,15 +63,10 @@ q {
   background-color: rgb(4, 0, 255);
   padding: 5px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 0.8rem;
   color: white;
   outline: none;
   border: none;
-}
-
-.dar[data-theme='dark'] {
-  box-shadow: 5px 5px 5px 5px rgba(241, 255, 0, 1);
-  background-color: blue;
 }
 
 html {
@@ -131,32 +135,6 @@ a {
   }
 }
 
-/* Ensure dark mode styles are properly applied */
-:root {
-  color-scheme: light;
-}
-
-:root[data-theme="dark"] {
-  color-scheme: dark;
-}
-
-/* Default light theme colors */
-:root {
-  --bg-primary: #ffffff;
-  --text-primary: #1a202c;
-}
-
-/* Dark theme colors */
-:root[data-theme="dark"] {
-  --bg-primary: #1a202c;
-  --text-primary: #ffffff;
-}
-
-/* Apply base styles */
-body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
-}
 
 /* Add to your existing styles */
 body {
@@ -185,11 +163,12 @@ body {
 }
 
 .collapsed {
-span {
+  span {
     display: none;
   }
 }
-.welcome{
+
+.welcome {
   background-image: url('../public/pngegg.png');
   background-size: cover;
   background-position: center;

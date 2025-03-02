@@ -22,7 +22,7 @@ const Calendar = () => {
 
           return (
             <CardTransition key={index} delay={index * 0.05}>
-              <div className="p-4 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200 dark:border-gray-700 text-gray-800 dark:text-gray-200 cursor-pointer bg-white dark:bg-gray-800">
+              <div className="p-4 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200  text-gray-800 dark:text-gray-200 cursor-pointer bg-white dark:bg-gray-800">
                 <DayCard 
                   day={formattedDay} 
                   dayNumber={day.getDate()}
