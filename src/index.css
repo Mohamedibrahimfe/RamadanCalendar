@@ -14,11 +14,13 @@
   --bg-secondary: #2d3748;
   --text-secondary: #a0aec0;
 }
-
 /* Add this to ensure Tailwind's dark mode works */
 :root[data-theme="dark"] .dark\:bg-gray-800 {
   background-color: #e9e8e8;
   color: black!important;
+   svg{
+    color: darkgray!important;
+  }
 }
 
 :root[data-theme="dark"] .dark\:text-white {
