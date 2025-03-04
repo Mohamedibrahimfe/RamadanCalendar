@@ -9,26 +9,25 @@ export default function Ai() {
   const [chatHistory, setChatHistory] = useState([]);
   const [error, setError] = useState(null);
   const language = useSelector((state) => state.language.language);
-
-  const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
-
+  const fetchDataFromAI = async (input) => {
+    const genAI = new GoogleGenerativeAI(import.meta.env.VITE_API_URL);
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const result = await model.generateContent(input);
+    return result.response.text();
+  };
   const generateResponse = async () => {
     if (!prompt.trim()) return;
-
+  
     setIsLoading(true);
     setError(null);
-
+  
     try {
-      const model = genAI.getGenerativeModel({ model: "gemini-pro" });
-      
       const promptPrefix = "You are a Ramadan routine planner assistant. Please help with the following request: ";
-      const result = await model.generateContent([promptPrefix + prompt]);
-      const response = await result.response;
-      const text = response.text();
+      const response = await fetchDataFromAI(promptPrefix + prompt);
       
       setChatHistory(prev => [...prev, 
         { type: 'user', content: prompt },
-        { type: 'bot', content: text }
+        { type: 'bot', content: response }
       ]);
       setPrompt('');
     } catch (error) {
@@ -41,7 +40,6 @@ export default function Ai() {
       setIsLoading(false);
     }
   };
-
   useEffect(() => {
     const chatContainer = document.querySelector('.chat-container');
     if (chatContainer) {
