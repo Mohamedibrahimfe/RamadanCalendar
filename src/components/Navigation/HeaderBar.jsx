@@ -2,7 +2,6 @@ import React from "react";
 import ThemeToggle from "./ThemeToggle";
 import ToggleLanguage from "./ToggleLanguage";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
 import { toggleCollapse } from "../../redux/collapse";
 import { useAuth, UserButton } from "@clerk/clerk-react"; // Update import
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useSelector } from 'react-redux';
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import Typewriter from 'typewriter-effect'; // Add this import
 
 export default function Ai() {
   const [prompt, setPrompt] = useState('');
@@ -10,7 +11,7 @@ export default function Ai() {
   const [error, setError] = useState(null);
   const language = useSelector((state) => state.language.language);
   const fetchDataFromAI = async (input) => {
-    const genAI = new GoogleGenerativeAI(import.meta.env.VITE_API_URL);
+    const genAI = new GoogleGenerativeAI(import.meta.env.VITE_GEMINI_API_KEY);
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
     const result = await model.generateContent(input);
     return result.response.text();
@@ -58,12 +59,19 @@ export default function Ai() {
           {language === "en" ? "AI Routine Assistant" : "مساعد الروتين الذكي"}
         </h1>
 
-        <div className="chat-container mb-6 h-[60vh] overflow-y-auto space-y-4 p-4 bg-gray-50  dark:bg-slate-200 rounded-lg">
+        <div className="chat-container mb-6 h-[60vh] overflow-y-auto space-y-4 p-4 bg-gray-50 dark:bg-slate-200 rounded-lg">
           {chatHistory.length === 0 && (
             <div className="text-center text-gray-500 dark:text-gray-400 py-8">
-              {language === "en" 
-                ? "Ask me about creating a beneficial Ramadan routine..." 
-                : "اسألني عن إنشاء روتين مفيد لرمضان..."}
+              <Typewriter
+                options={{
+                  strings: language === "en" 
+                    ? "Ask me about creating a beneficial Ramadan routine..."
+                    : "اسألني عن إنشاء روتين مفيد لرمضان...",
+                  autoStart: true,
+                  loop: true,
+                  delay: 50,
+                }}
+              />
             </div>
           )}
           {chatHistory.map((message, index) => (
@@ -80,7 +88,18 @@ export default function Ai() {
                     : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white'
                 }`}
               >
-                <p className="whitespace-pre-wrap">{message.content}</p>
+                {message.type === 'bot' ? (
+                  <Typewriter
+                    options={{
+                      strings: [message.content],
+                      autoStart: true,
+                      delay: 30,
+                      cursor: '',
+                    }}
+                  />
+                ) : (
+                  <p className="whitespace-pre-wrap">{message.content}</p>
+                )}
               </div>
             </motion.div>
           ))}

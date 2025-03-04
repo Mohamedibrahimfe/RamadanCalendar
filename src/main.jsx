@@ -32,6 +32,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     signInUrl="/"
     signUpUrl="/"
     navigateUrl="/dashboard"
+    navigate={(to) => navigate(to, { replace: true })} // Add this line
   >
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
