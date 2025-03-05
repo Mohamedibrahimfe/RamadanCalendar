@@ -10,12 +10,17 @@ const Calendar = () => {
     day.setDate(startDate.getDate() + i);
     return day;
   });
-  
+
   const tasks = useSelector((state) => state.calendar.tasks);
+  const language = useSelector((state) => state.language.language);
+
 
   return (
     <PageTransition>
-      <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-4 p-4">
+
+      <div className="grid lg:grid-cols-5 md:grid-cols-3 grid-cols-1 gap-4 p-4"
+      style={{ direction: 'rtl' }}
+      >
         {days.map((day, index) => {
           const formattedDay = day.toISOString().split('T')[0];
           const dayTasks = tasks[formattedDay] || [];
@@ -23,16 +28,17 @@ const Calendar = () => {
           return (
             <CardTransition key={index} delay={index * 0.05}>
               <div className="p-4 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 border border-gray-200  text-gray-800 dark:text-gray-200 cursor-pointer bg-white dark:bg-gray-800">
-                <DayCard 
-                  day={formattedDay} 
+                <DayCard
+                  day={formattedDay}
                   dayNumber={day.getDate()}
-                  dayTasks={dayTasks} 
+                  dayTasks={dayTasks}
                 />
               </div>
             </CardTransition>
           );
         })}
       </div>
+
     </PageTransition>
   );
 };

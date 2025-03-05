@@ -39,7 +39,7 @@ export default function HeaderBar() {
             <div className="flex items-center space-x-3">
               <ThemeToggle />
               <ToggleLanguage />
-              <UserButton 
+              <UserButton
                 afterSignOutUrl="/"
                 appearance={{
                   elements: {
